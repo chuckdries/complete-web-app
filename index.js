@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
 const sqlite = require('sqlite');
+const passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+
+const posts = require('./routes/posts');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'twig');
 
 app.use(require('body-parser').urlencoded({ extended: true }));
-
-
-var planets = ['moon', 'sun', 'earth'];
 
 const dbPromise = sqlite.open('./data.sqlite');
 
@@ -19,24 +20,7 @@ app.get('/', async function (req, res){
   res.render('index',{title: 'Posts', posts: posts});
 });
 
-app.get('/foobar', function(req, res){
-  res.send('goober');
-})
-
-app.post('/posts', async function(req, res){
-  const newPost = req.body;
-  const db = await dbPromise;
-  db.run(`INSERT INTO Posts (
-          author,
-          message
-         )
-          VALUES (
-            '${newPost.author}',
-            '${newPost.message}'
-          )`
-  );
-  res.redirect('/');
-})
-
+app.use('/posts', posts);
 
 app.listen(3000);
+console.log('listening on 3000')

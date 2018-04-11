@@ -1,21 +1,29 @@
 <html>
 <head>
   <title>{{title}}</title>
+  <style>
+  body{
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.6;
+    font-family: arial;
+  }
+  </style>
 </head>
 <body>
   <h1>{{title}}</h1>
-  <ul>
+
     {% for post in posts %}
-      <li>
-        <h4>{{post.author}}</h4>
+      <div>
+        <h4>{{post.id}}: {{post.author}}</h4>
         <p>{{post.message}}</p>
-      </li>
+      </div>
     {% endfor %}
-  </ul>
+
   <form action="/posts" method="POST">
     <h5>New Post</h5>
-    <div><input type="text" name="author" value="Author" /></div>
-    <div><input type="text" name="message" value="Post message" /></div>
+    <div><input type="text" name="author" placeholder="Author" /></div>
+    <div><input type="text" name="message" placeholder="Post message" /></div>
     <input type="submit" value="Submit">
   </form>
 </body>
