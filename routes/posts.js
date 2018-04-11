@@ -22,4 +22,9 @@ router.get('/:id', async function(req, res) {
   res.render('index',{title: 'Posts', posts: [data]});
 })
 
+router.get('/:id/delete', async function(req, res){
+  await posts.deleteById(req.params.id);
+  res.redirect('/');
+})
+
 module.exports = router;
