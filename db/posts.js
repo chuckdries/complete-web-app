@@ -11,26 +11,18 @@ module.exports.getAll = async function() {
 
 module.exports.insert = async function(post){
   const db = await dbPromise;
-  await db.run(`INSERT INTO Posts (
-          author,
-          message
-         )
-          VALUES (
-            '${post.author}',
-            '${post.message}'
-          )`
-  );
+  await db.run(`INSERT INTO Posts (author, message) VALUES (?, ?)`, post.author, post.message);
   return;
 }
 
 module.exports.getById = async function(id) {
   const db = await dbPromise;
-  const post = await db.get(`SELECT * FROM Posts WHERE id=${id}`);
+  const post = await db.get(`SELECT * FROM Posts WHERE id=?`, id);
   return post;
 }
 
 module.exports.deleteById = async function(id) {
   const db = await dbPromise;
-  await db.run(`DELETE FROM Posts WHERE id = '${id}';`);
+  await db.run(`DELETE FROM Posts WHERE id = ?;`, id);
   return
 }

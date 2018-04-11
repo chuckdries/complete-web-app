@@ -19,7 +19,11 @@ router.post('/', async function(req, res){
 
 router.get('/:id', async function(req, res) {
   const data = await posts.getById(req.params.id);
-  res.render('index',{title: 'Posts', posts: [data]});
+  if(!data){
+    res.send(404);
+  } else {
+    res.render('index',{title: 'Posts', posts: [data]});
+  }
 })
 
 router.get('/:id/delete', async function(req, res){
