@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --inspect index.js",
+    "watch": "nodemon --inspect -e twig index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "passport-local": "^1.0.0",
     "sqlite": "^2.9.1",
     "twig": "^1.10.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
