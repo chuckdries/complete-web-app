@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>{{title}}</title>
+  <title>Welcome</title>
   <style>
   body{
     max-width: 800px;
@@ -11,22 +11,7 @@
   </style>
 </head>
 <body>
-  <h1>{{title}}</h1>
-    {% if isOnPostPage %}
-      <a href="/posts">back</a>
-    {% endif %}
-    {% for post in posts %}
-      <div>
-        <p><a href="/posts/{{post.id}}">({{post.id}})</a> {{post.author}}:
-        {{post.message}}</p>
-      </div>
-    {% endfor %}
-  {% if not isOnPostPage %}
-    <form action="/posts" method="POST">
-      <input type="text" name="author" placeholder="Author" />: 
-      <input type="text" name="message" placeholder="Message" />
-      <input type="submit" value="Submit">
-    </form>
-  {% endif %}
+  <h1>Welcome to the Chuck's express complete web app!</h1>
+  <p>Hit up <a href="/posts">/posts</a> to join the party!</p>
 </body>
 </html>

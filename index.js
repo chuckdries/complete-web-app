@@ -12,7 +12,8 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 const dbPromise = sqlite.open('./data.sqlite');
 
 app.get('/', async function (req, res){
-  res.redirect('/posts');
+  // res.redirect('/posts');
+  res.render('index');
 });
 
 app.use('/posts', posts);
