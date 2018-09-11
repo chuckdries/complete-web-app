@@ -15,15 +15,14 @@
 
     {% for post in posts %}
       <div>
-        <h4>{{post.id}}: {{post.author}}</h4>
-        <p>{{post.message}}</p>
+        <p>{{post.author}}:
+        {{post.message}}</p>
       </div>
     {% endfor %}
 
   <form action="/posts" method="POST">
-    <h5>New Post</h5>
-    <div><input type="text" name="author" placeholder="Author" /></div>
-    <div><input type="text" name="message" placeholder="Post message" /></div>
+    <input type="text" name="author" placeholder="Author" />: 
+    <input type="text" name="message" placeholder="Message" />
     <input type="submit" value="Submit">
   </form>
 </body>

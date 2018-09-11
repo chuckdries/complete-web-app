@@ -16,8 +16,7 @@ const dbPromise = sqlite.open('./data.sqlite');
 app.get('/', async function (req, res){
   const db = await dbPromise;
   const posts = await db.all('SELECT * FROM Posts');
-  console.log(posts);
-  res.render('index',{title: 'Posts', posts: posts});
+  res.render('index',{title: 'Messages for the void', posts});
 });
 
 app.use('/posts', posts);
