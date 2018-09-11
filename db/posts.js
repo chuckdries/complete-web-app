@@ -5,7 +5,6 @@ const dbPromise = sqlite.open('./data.sqlite');
 module.exports.getAll = async function() {
   const db = await dbPromise;//wait for database
   const posts = await db.all('SELECT * FROM Posts');
-  console.log(posts);
   return posts;
 }
 

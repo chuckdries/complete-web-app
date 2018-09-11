@@ -10,11 +10,12 @@ router.get('/', async function(req, res) {
   const data = await posts.getAll();
   res.render('index',{title: 'Posts', posts: data});
 });
+
 router.post('/', async function(req, res){
   const newPost = req.body;
   const db = await dbPromise;
   await posts.insert(newPost);
-  res.redirect('/');
+  res.redirect('/posts');
 })
 
 router.get('/:id', async function(req, res) {
@@ -22,13 +23,13 @@ router.get('/:id', async function(req, res) {
   if(!data){
     res.send(404);
   } else {
-    res.render('index',{title: 'Posts', posts: [data]});
+    res.render('index',{title: `Post number ${req.params.id}`, posts: [data], isOnPostPage: true});
   }
 })
 
 router.get('/:id/delete', async function(req, res){
   await posts.deleteById(req.params.id);
-  res.redirect('/');
+  res.redirect('/posts');
 })
 
 module.exports = router;

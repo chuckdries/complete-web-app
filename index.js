@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 const sqlite = require('sqlite');
-const passport = require('passport');
-var Strategy = require('passport-local').Strategy;
 
 const posts = require('./routes/posts');
 
@@ -14,9 +12,7 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 const dbPromise = sqlite.open('./data.sqlite');
 
 app.get('/', async function (req, res){
-  const db = await dbPromise;
-  const posts = await db.all('SELECT * FROM Posts');
-  res.render('index',{title: 'Messages for the void', posts});
+  res.redirect('/posts');
 });
 
 app.use('/posts', posts);
