@@ -22,6 +22,7 @@ router.get('/:id', async function(req, res) {
   if(!data){
     res.send(404);
   } else {
+    // the [data] syntax simply takes our single post and turns it into a one-post array, which our template expects
     res.render('posts',{title: `Post number ${req.params.id}`, posts: [data], isOnPostPage: true});
   }
 })
